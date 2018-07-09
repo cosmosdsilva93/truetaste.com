@@ -36,15 +36,13 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "chmod -R 755 bootstrap\/cache",
+            "php artisan cache:clear",
             "php artisan optimize"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
-        ],
-        "post-install-cmd": [
-            "chmod -R 755 bootstrap\/cache",
-            "php artisan cache:clear"
         ]
     },
     "config": {
