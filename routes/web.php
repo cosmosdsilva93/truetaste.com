@@ -13,3 +13,15 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/contact-us', 'HomeController@contactUs');
+Route::post('/send-message', 'HomeController@getMessage');
+Route::get('/menu', 'HomeController@menu');
+Route::get('/add-to-cart', 'HomeController@addToCart');
+
+
+
+
+
+
+Route::get('/admin', 'AdminController@showLogin')->name('login');
+Route::get('/admin/login', 'AdminController@login');
+

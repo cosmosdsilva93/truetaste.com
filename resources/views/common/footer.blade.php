@@ -12,7 +12,7 @@
                     <div class="tv-footer-desc">
                         <ul class="list-unstyled footer-menu">
                             <li class=""><a href="{{ url('/') }}" class="tv-menu">Home</a></li>
-                            <li class=""><a class="tv-menu">Menu</a></li>
+                            <li class=""><a class="{{ url('/menu') }}">Menu</a></li>
                             <li class=""><a class="tv-menu">Events</a></li>
                             <li class=""><a class="tv-menu">About</a></li>
                             <!-- <li class=""><a class="tv-menu">Offer</a></li> -->

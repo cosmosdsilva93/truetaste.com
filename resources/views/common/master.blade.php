@@ -4,6 +4,7 @@
         <title>True Taste : @yield('title')</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="images/favicon.png" rel="icon"/>
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/scrolling-nav.css') }}" rel="stylesheet">
@@ -29,5 +30,15 @@
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTwYSMRGuTsmfl2z_zZDStYqMlKtrybxo"></script>
         <script src="{{ asset('js/map-custom.js') }}"></script>
     @endif
+    <script type="text/javascript">
+        @php
+            $subpath = '';
+            if(env('APP_ENV') == 'local'){
+                $path = explode('\\', base_path());
+                $subpath = '/' . end($path);
+            }
+        @endphp
+        var subpath = "{{ $subpath }}";
+    </script>
     <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
 </html>

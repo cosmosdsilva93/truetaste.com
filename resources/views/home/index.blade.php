@@ -17,7 +17,7 @@
                 <div class="tv-ourstory-content">
                     <p>Donec libero ante, commodo at pretium vitae, iaculis dapibus ipsum. Morbi mattis elit et turpis mattis scelerisque. Maecenas fermentum rhoncus dolor sit amet varius. Ut euismod convallis auctor Etiam nec arcu mauris. Nulla id nunc et libero mattis tristique at in quam. Fusce quis risus mauris.</p>
                     <p>Raesent imperdiet dignissim lectus eget tempus. Donec efficitur odio mi, eget congue risus euismod sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                    <div class="tv-offspace-50"><a href="reservation.html" class="button tv-restro-button-effect">Book Now</a></div>
+                    <!-- <div class="tv-offspace-50"><a href="reservation.html" class="button tv-restro-button-effect">Book Now</a></div> -->
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="tv-dishes-info">
                         <p>Donec libero ante</p>
-                        <h4>$100</h4>
+                        <!-- <h4>$100</h4> -->
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
@@ -106,7 +106,7 @@
                     </div>
                     <div class="tv-dishes-info">
                         <p>Donec libero ante</p>
-                        <h4>$100</h4>
+                        <!-- <h4>$100</h4> -->
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="tv-dishes-info">
                         <p>Donec libero ante</p>
-                        <h4>$100</h4>
+                        <!-- <h4>$100</h4> -->
                     </div>
                 </div>
 
