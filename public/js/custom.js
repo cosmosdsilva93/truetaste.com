@@ -2,7 +2,7 @@ $(function(){
 
     //fade out all alerts after certain interval
     setInterval(function(){
-        $('.alert').fadeOut();
+        $('.alert-msgs').fadeOut();
     }, '3000');
 
     if($('#chefowl').length){
@@ -85,7 +85,7 @@ $(function(){
                 $('#contact-us-loader').hide();
                 var alert = $('#contact-us-alert');
                 var alertType = (res.success) ? 'alert-success' : 'alert-danger';
-                alert.attr('class', '').addClass('alert ' + alertType);
+                alert.attr('class', '').addClass('alert ' + alertType + ' alert-msgs');
                 alert.children().eq(0).text(res.msg);
                 $('#contact-us-form .inputs').val('');
                 $('#contact-us-alert').fadeIn();
@@ -114,12 +114,14 @@ $(function(){
         
     });
 
-    $('.datatables').DataTable({
-        'columnDefs': [{
-            'targets': [-1], // column or columns numbers
-            'orderable': false,  // set orderable for selected columns
-        }]
-    });
+    // if ($('.datatables').length) {
+    //     $('.datatables').DataTable({
+    //         'columnDefs': [{
+    //             'targets': [-1], // column or columns numbers
+    //             'orderable': false,  // set orderable for selected columns
+    //         }]
+    //     });
+    // }    
 
     $('#login-form').on('submit', function(e){
         e.preventDefault();
@@ -143,5 +145,91 @@ $(function(){
         });
     });
 
+    $('#view-cart').on('click', function(){
+        $.ajax({
+            url: subpath+'/get-cart',
+            data: {},
+            dataType: 'json',
+            beforeSend: function(){
+                $('#cartView').html('<div align="center"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></div>');
+                                         // .prop('disabled', true);
+            },
+            success: function(res){
+                // return false;
+                if (res) {
+                    if (!res.noData) {
+                        $('#checkoutBttn').prop('disabled', false);
+                    }
+                    $('#cartView').html(res.view);
+                }
+            }
+        }); 
+        $('#view-cart-modal').modal('show');
+    });
+
+    $('#checkoutBttn').on('click', function(e){
+        e.preventDefault();
+        var data = $('#checkoutForm').serializeArray();
+        $.ajax({
+            url: subpath+'/save-order-details',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function()
+            {
+
+            },
+            success: function(res)
+            {
+                console.log(res);
+                if (res.success) {
+                    $('#checkoutForm').submit();
+                } else {
+                    $('#checkout-alert span').text(res.msg);
+                    $('#checkout-alert').fadeIn();
+                }
+            }
+        });
+        
+    });
+
 });
 
+function changeStatus(controller, status, id)
+{
+    swal({
+        title: "Are you sure you want to make this "+ controller + (status ? ' active' : ' inactive') +" ?",
+        icon: "warning",
+        buttons: true,
+        dangermode: true,
+        showCancelButton: true,
+        confirmButtonClass: "btn-success",
+        confirmButtonText: "Yes"
+    }, function(isConfirm) 
+    {
+        if (isConfirm) {
+            $.ajax({
+                url: subpath+'/'+controller+(controller == 'route' ? 'z' : 's')+'/change-status',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: id,
+                    status: status
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(res) 
+                {
+                    if (res) {
+                        window.location = res.url;
+                    }
+                }
+            });
+        }    
+    });
+   
+}

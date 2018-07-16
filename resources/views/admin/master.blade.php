@@ -57,7 +57,7 @@
                             @yield('content')
                         </div>
                     </div>     
-                    <!-- @include('common.footer') -->
+                    @include('admin.footer')
                 </div>
             </div>
         @else
@@ -70,6 +70,8 @@
             if(env('APP_ENV') == 'local'){
                 $path = explode('\\', base_path());
                 $subpath = '/' . end($path) . '/admin';
+            } else {
+                $subpath = '/admin';
             }
         @endphp
         var subpath = "{{ $subpath }}";

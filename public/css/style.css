@@ -5,7 +5,7 @@ Author URI: http://www.themevault.net/
 License URI: http://www.themevault.net/license/*/
 
 /* FONTS*/
-@import '../fonts/font-awesome-4.7.0/css/font-awesome.min.css';
+@import '../css/font-awesome.min.css';
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700,800,900');
 /*font-family: 'Nunito', sans-serif;*/
 @import url('https://fonts.googleapis.com/css?family=Courgette');

@@ -14,6 +14,9 @@
         <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
+        @if (Request::segment(1) == 'payment-fail')
+            <link href="{{ asset('css/payment-fail.css') }}" rel="stylesheet">
+        @endif
     </head>
     <body id="home"> 
         @include('common.header')

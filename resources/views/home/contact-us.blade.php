@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-8 col-sm-6">
                     <div id="respond">
-                        <div class="alert" id="contact-us-alert" align="center" style="display:none;">
+                        <div class="alert alert-msgs" id="contact-us-alert" align="center" style="display:none;">
                             <span id="contact-us-alert-msg"></span>
                         </div>
                         <form id="contact-us-form">

@@ -6,9 +6,9 @@
     <div class="tabs-menu tabs-page">
         <div class="container">
             <ul class="nav-tabs text-center" role="tablist">
-                <li class="active"><a href="#breakfast" role="tab" data-toggle="tab">Breakfast</a></li>
-                <li><a href="#lunch" role="tab" data-toggle="tab">Lunch</a></li>
-                <li><a href="#dinner" role="tab" data-toggle="tab">Dinner</a></li>
+                @foreach($menu as $categoryId => $items)
+                    <li class="{{ ($categoryId == 1) ? 'active' : '' }}"><a href="#{{ $categories[$categoryId] }}" role="tab" data-toggle="tab">{{ ucfirst($categories[$categoryId]) }}</a></li>
+                @endforeach    
                 <li><span style="color:#ffffff;">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
                 <li>
                     <div style="color:#ffffff;">
@@ -18,7 +18,7 @@
                             $cartCount = (isset($_SESSION['cart'])) ? array_sum($_SESSION['cart']) : 0;
                          ?>
                         <span style="font-size: 20px;" id="cartCount">{{ $cartCount }}</span>
-                        <span><a href="">View Cart</a></span>
+                        <span><a href="javascript:void(0);" id="view-cart">View Cart</a></span>
                     </div>
                 </li>
             </ul>
@@ -28,683 +28,78 @@
         <div class="container">
             <div class="tab-menu-content tab-content">
                 <!-- BREAKFAST -->
-                <div class="tab-pane fade in active" id="breakfast">
-                    <div class="row" data-category=1>
+                @foreach($menu as $categoryId => $items)
+                <div class="tab-pane fade {{ ($categoryId == 1) ? 'in active' : '' }}" id="{{ $categories[$categoryId] }}">
+                    <div class="row" data-category={{ $categoryId }}>
                         <!-- THE MENU ITEM -->
+                        @foreach($items as $itemDetails)
                         <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=1>
+                            <div class="the-menu-item" data-product={{ $itemDetails['id'] }}>
                                 <div class="image-wrap">
-                                    <img src="images/Image5.png" class="img-responsive" alt="menu-img">
+                                    <img src="images/Image{{ rand(5,8) }}.png" class="img-responsive" alt="menu-img">
                                 </div>
                                 <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff</span>
+                                    <span class="menu-title">{{ ucwords($itemDetails['item']) }}</span>
                                 </div>
                                 <div class="prices">
-                                    <span class="price">$16.00</span>
+                                    <span class="price">${{ number_format($itemDetails['price'], 2) }}</span>
                                 </div> 
                                 <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
                                     <input class="buyBttn" value="Buy" type="submit">
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                         <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=2>
-                                <div class="image-wrap">
-                                    <img src="images/Image6.png" class="img-responsive" alt="menu-img">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
-                                    <input class="buyBttn" value="Buy" type="submit">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=3>
-                                <div class="image-wrap">
-                                    <img src="images/Image7.png" class="img-responsive" alt="menu-img">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
-                                    <input class="buyBttn" value="Buy" type="submit">
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=4>
-                                <div class="image-wrap">
-                                    <img src="images/Image8.png" class="img-responsive" alt="menu-img">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
-                                    <input class="buyBttn" value="Buy" type="submit">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=5>
-                                <div class="image-wrap">
-                                    <img src="images/Image5.png" class="img-responsive" alt="menu-img">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
-                                    <input class="buyBttn" value="Buy" type="submit">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=6>
-                                <div class="image-wrap">
-                                    <img src="images/Image6.png" class="img-responsive" alt="menu-img">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
-                                    <input class="buyBttn" value="Buy" type="submit">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=7>
-                                <div class="image-wrap">
-                                    <img src="images/Image7.png" class="img-responsive" alt="menu-img">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
-                                    <input class="buyBttn" value="Buy" type="submit">
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=8>
-                                <div class="image-wrap">
-                                    <img src="images/Image8.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
-                                    <input class="buyBttn" value="Buy" type="submit">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=9>
-                                <div class="image-wrap">
-                                    <img src="images/Image5.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
-                                    <input class="buyBttn" value="Buy" type="submit">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item" data-product=10>
-                                <div class="image-wrap">
-                                    <img src="images/Image6.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                                <div class="blogsubmit" style="position:absolute;top:40px;right:0;">
-                                    <input class="buyBttn" value="Buy" type="submit">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
                     </div>
-
                 </div>
                 <!-- END / BREAKFAST -->
-
-                <!-- LUNCH -->
-                <div class="tab-pane fade" id="lunch">
-                    <div class="row">
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image7.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image8.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image5.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image6.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image7.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image8.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image5.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                    </div>
-                </div>
-                <!-- END / LUNCH -->
-
-                <!-- DINNER -->
-                <div class="tab-pane fade" id="dinner">
-                    <div class="row">
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image6.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image7.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image8.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image5.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image6.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image7.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image8.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</span>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                    </div>
-                </div>
-                <!-- END / DINNER -->
-
-                <?php /*
-                <!-- DESSERT -->
-                <div class="tab-pane fade" id="dessert">
-                    <div class="row">
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image5.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image6.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image7.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image8.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image5.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image6.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                    </div>
-                </div>
-                <!-- END / DESSERT -->
-                <?php */ ?>
-                <!-- DRINK -->
-                <?php /*
-                <div class="tab-pane fade" id="drink">
-                    <div class="row">
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image7.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image8.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image5.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image6.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image7.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image8.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-
-                        <!-- THE MENU ITEM -->
-                        <div class="col-md-6 col-lg-6">
-                            <div class="the-menu-item">
-                                <div class="image-wrap">
-                                    <img src="images/Image5.png" alt="">
-                                </div>
-                                <div class="the-menu-body">
-                                    <span class="menu-title">Scrambled Eggs in Puff Pastry</a>
-                                </div>
-                                <div class="prices">
-                                    <span class="price">$16.00</span>
-                                </div>
-                                <!-- <div class="highlight">Offer</div> -->
-                            </div>
-                        </div>
-                        <!-- END / THE MENU ITEM -->
-                    </div>
-                </div>
-                <!-- END / DRINK -->
-                <?php */ ?>
+                @endforeach
             </div>
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="view-cart-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Your Cart</h4>
+            </div>
+            <div class="modal-body" id="cart-modal-body">
+                <div class="alert alert-danger alert-msgs" align="center" id="checkout-alert" style="display:none;">
+                    <span></span>
+                </div>
+                <form id="checkoutForm" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="POST" role="form">
+                    
+                    <!-- Identify your business so that you can collect the payments. -->
+                    <input type="hidden" name="business" value="truetastestore2018@gmail.com">
+                    <input type="hidden" name="cmd" value="_cart">
+                    <input type="hidden" name="upload" value="1">
+                    <div id="cartView">
+                               
+                    </div>               
+                    <input type="hidden" name="currency_code" value="USD">
+                    
+                    <!-- Specify URLs -->
+                    <input type='hidden' name='cancel_return' value='{{ url('/payment-failed') }}'>
+                    <input type='hidden' name='return' value='{{ url('/payment-success') }}'>
+
+                    <div class="blogsubmit" align="center">
+                        <br>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="checkoutBttn" class="btn btn-danger" disabled>Checkout</button>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <div align="center">
+                    
+                    <button type="button" class="btn btn-danger">Checkout</button>                        
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
 @endsection

@@ -7,38 +7,26 @@
 	<div class="sidebar-wrapper">
         <div class="logo">
             <a href="{{ url('/dashboard') }}" class="simple-text">
-                Airlatte Admin
+                True Taste Admin
             </a>
         </div>
         <ul class="nav">
-            <li class="{{ Request::segment(1) == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ url('/dashboard') }}">
+            <li class="{{ Request::segment(2) == 'customer-orders' ? 'active' : '' }}">
+                <a href="{{ url('/admin/orders') }}">
                     <i class="fa fa-pie-chart" aria-hidden="true"></i>
-                    <p>Dashboard</p>
+                    <p>Orders</p>
                 </a>
             </li>
-            <!-- <li class="{{ Request::segment(1) == 'bookings' ? 'active' : '' }}">
-                <a href="{{ url('/bookings') }}">
+            <li class="{{ Request::segment(2) == 'menu' ? 'active' : '' }}">
+                <a href="{{ url('/admin/menu') }}">
                     <i class="fa fa-list-ul" aria-hidden="true"></i>
-                    <p>Bookings</p>
+                    <p>Menu</p>
                 </a>
-            </li> -->
-            <li class="{{ Request::segment(1) == 'helipads' ? 'active' : '' }}">
-                <a href="{{ url('/helipads') }}">
+            </li>
+            <li class="{{ Request::segment(2) == 'queries' ? 'active' : '' }}">
+                <a href="{{ url('/admin/queries') }}">
                     <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                    <p>Helipads</p>
-                </a>
-            </li>
-            <li class="{{ Request::segment(1) == 'routes' ? 'active' : '' }}">
-                <a href="{{ url('/routez') }}">
-                    <i class="fa fa-road" aria-hidden="true"></i>
-                    <p>Routes</p>
-                </a>
-            </li>
-            <li class="{{ Request::segment(1) == 'users' ? 'active' : '' }}">
-                <a href="{{ url('/users') }}">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    <p>Users</p>
+                    <p>Queries</p>
                 </a>
             </li>
         </ul>
