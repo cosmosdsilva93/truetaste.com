@@ -88,12 +88,12 @@ class HomeController extends Controller
         if ($this->request->all()) {
             if ($this->request->input('st') == 'Completed') {
                 session_start();
-                $orderId = 192;
-                // if (isset($_SESSION['orderId'])) {
-                //     $orderId = $_SESSION['orderId'];   
-                // } else {
-                //    return redirect()->route('home'); 
-                // }
+                // $orderId = 192;
+                if (isset($_SESSION['orderId'])) {
+                    $orderId = $_SESSION['orderId'];   
+                } else {
+                   return redirect()->route('home'); 
+                }
                 session_destroy();
                 $response = $this->home->updateOrderDetails($orderId, $this->request->input('tx'));
                 if ($response['success']) {
@@ -118,7 +118,7 @@ class HomeController extends Controller
                     }
                     $recepients['name'] = $data['name'];
                     $recepients['email'] = $data['email'];
-
+        
                     \Mail::send('emails.order-details', $data, function($message) use ($recepients) {
                         $message->to($recepients['email'], $recepients['name'])
                                 ->subject('Your True Taste order details');
