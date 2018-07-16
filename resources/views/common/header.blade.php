@@ -19,9 +19,9 @@
                             <li class="tv-drop-menu">
                                 <a href="{{ url('/') }}" data-hover="Home" class="tv-menu"><span>home</span></a>
                             </li>
-                            <li class=""><a href="menu.html" class="tv-menu" data-hover="Menu"><span>Menu</span></a></li>
-                            <li class=""><a href="events.html" class="tv-menu" data-hover="Events"><span>Events</span></a></li>
-                            <li class=""><a href="about.html" class="tv-menu" data-hover="About"><span>About</span></a></li>
+                            <li class=""><a href="{{ url('/menu') }}" class="tv-menu" data-hover="Menu"><span>Menu</span></a></li>
+                            <li class=""><a href="{{ url('/events') }}" class="tv-menu" data-hover="Events"><span>Events</span></a></li>
+                            <li class=""><a href="{{ url('/about-us') }}" class="tv-menu" data-hover="About"><span>About</span></a></li>
                             <li><a href="{{ url('/contact-us') }}" class="tv-menu" data-hover="Contact Us"><span>contact us</span></a></li>
                         </ul>
                     </div>
@@ -30,7 +30,6 @@
         </div>
     </nav>
     <!--End Navigation Section-->
-
     <!--Banner Section-->
     <div class="tv-banner-image" style="background: rgba(0, 0, 0, 0) url('images/Image9.png') no-repeat scroll center top / cover;">
         <div class="tv-banner-title">

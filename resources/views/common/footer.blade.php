@@ -12,11 +12,9 @@
                     <div class="tv-footer-desc">
                         <ul class="list-unstyled footer-menu">
                             <li class=""><a href="{{ url('/') }}" class="tv-menu">Home</a></li>
-                            <li class=""><a class="tv-menu">Menu</a></li>
-                            <li class=""><a class="tv-menu">Events</a></li>
-                            <li class=""><a class="tv-menu">About</a></li>
-                            <!-- <li class=""><a class="tv-menu">Offer</a></li> -->
-                            <!-- <li class=""><a class="tv-menu">Blog</a></li> -->
+                            <li class=""><a href="{{ url('/menu') }}" class="tv-menu">Menu</a></li>
+                            <li class=""><a href="{{ url('/events') }}" class="tv-menu">Events</a></li>
+                            <li class=""><a href="{{ url('/about-us') }}" class="tv-menu">About</a></li>
                             <li class=""><a href="{{ url('/contact-us') }}" class="tv-menu">Contact Us</a></li>
                         </ul>
                     </div>

@@ -31,27 +31,34 @@
                 </div>
                 <div class="col-md-8 col-sm-6">
                     <div id="respond">
-                        <form>
+                        <div class="alert alert-msgs" id="contact-us-alert" align="center" style="display:none;">
+                            <span id="contact-us-alert-msg"></span>
+                        </div>
+                        <form id="contact-us-form">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-item form-textarea">
-                                        <textarea placeholder="Message"></textarea>
+                                        <textarea class="inputs" name="message" placeholder="Message" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4 col-sm-12">
                                     <div class="form-item form-name">
-                                        <input placeholder="Your Name" type="text">
+                                        <input class="inputs" name="name" placeholder="Your Name" type="text" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="form-item form-email">
-                                        <input placeholder="Your Email" type="text">
+                                        <input class="inputs" name="email" placeholder="Your Email" type="email" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="form-actions">
-                                        <div class="blogsubmit"><input value="Send Message" type="submit"></div>
+                                        <div class="blogsubmit">
+                                            <input value="Send Message" type="submit">
+                                            &nbsp;&nbsp;&nbsp;
+                                            <span id="contact-us-loader" style="display:none;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

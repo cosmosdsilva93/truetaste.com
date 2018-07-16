@@ -17,7 +17,7 @@
                 <div class="tv-ourstory-content">
                     <p>Donec libero ante, commodo at pretium vitae, iaculis dapibus ipsum. Morbi mattis elit et turpis mattis scelerisque. Maecenas fermentum rhoncus dolor sit amet varius. Ut euismod convallis auctor Etiam nec arcu mauris. Nulla id nunc et libero mattis tristique at in quam. Fusce quis risus mauris.</p>
                     <p>Raesent imperdiet dignissim lectus eget tempus. Donec efficitur odio mi, eget congue risus euismod sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                    <div class="tv-offspace-50"><a href="reservation.html" class="button tv-restro-button-effect">Book Now</a></div>
+                    <!-- <div class="tv-offspace-50"><a href="reservation.html" class="button tv-restro-button-effect">Book Now</a></div> -->
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="tv-dishes-info">
                         <p>Donec libero ante</p>
-                        <h4>$100</h4>
+                        <!-- <h4>$100</h4> -->
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
@@ -106,7 +106,7 @@
                     </div>
                     <div class="tv-dishes-info">
                         <p>Donec libero ante</p>
-                        <h4>$100</h4>
+                        <!-- <h4>$100</h4> -->
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="tv-dishes-info">
                         <p>Donec libero ante</p>
-                        <h4>$100</h4>
+                        <!-- <h4>$100</h4> -->
                     </div>
                 </div>
 
@@ -221,72 +221,4 @@
     </div>
 </section>
 <!--End Gallery Section-->
-
-<!--Our Testimonial-->
-<!-- <section class="tv-section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="tv-section-main-title">
-                <p class="tv-main-title-slogan">What They're Saying?</p>
-                <h3>Our Testimonial</h3>
-                <div class="tv-main-title-effect">
-                    <i class="main-title-icon"></i>
-                </div>
-                <p class="tv-section-main-intro">Donec libero ante, commodo at pretium vitae, iaculis dapibus ipsum. Morbi mattis elit et turpis mattis scelerisque. Maecenas fermentum rhoncus.</p>
-            </div>
-            <div class="col-md-3 col-md-offset-1-and-half col-sm-3 col-xs-12">
-                <div class="tv-testimonail-img">
-                    <img src="images/Image19.png" class="width-100 img-responsive img-circle" alt="testimonial-img">
-                    <h4>Jenifer Garner</h4>
-                    <h5>happy People</h5>
-                    <div class="tv-social">
-                        <div class="tv-social-navbar">
-                            <a href="#"><span class="fa fa-facebook-f"></span></a>
-                            <a href="#"><span class="fa fa-twitter"></span></a>
-                            <a href="#"><span class="fa fa-google-plus"></span></a>
-                            <a href="#"><span class="fa fa-linkedin"></span></a>
-                            <a href="#"><span class="fa fa-pinterest"></span></a>
-                        </div>
-                    </div>
-                    <p>Vivamus auctor fermentum nisi, dapibus aliquet dolor pretium non. Nam vitae justo fermentum.</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12">
-                <div class="tv-testimonail-img">
-                    <img src="images/Image20.png" class="width-100 img-responsive img-circle" alt="testimonial-img">
-                    <h4>John Smith</h4>
-                    <h5>happy People</h5>
-                    <div class="tv-social">
-                        <div class="tv-social-navbar">
-                            <a href="#"><span class="fa fa-facebook-f"></span></a>
-                            <a href="#"><span class="fa fa-twitter"></span></a>
-                            <a href="#"><span class="fa fa-google-plus"></span></a>
-                            <a href="#"><span class="fa fa-linkedin"></span></a>
-                            <a href="#"><span class="fa fa-pinterest"></span></a>
-                        </div>
-                    </div>
-                    <p>Vivamus auctor fermentum nisi, dapibus aliquet dolor pretium non. Nam vitae justo fermentum.</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12">
-                <div class="tv-testimonail-img">
-                    <img src="images/Image21.png" class="width-100 img-responsive img-circle" alt="testimonial-img">
-                    <h4>Beth Morgan</h4>
-                    <h5>happy People</h5>
-                    <div class="tv-social">
-                        <div class="tv-social-navbar">
-                            <a href="#"><span class="fa fa-facebook-f"></span></a>
-                            <a href="#"><span class="fa fa-twitter"></span></a>
-                            <a href="#"><span class="fa fa-google-plus"></span></a>
-                            <a href="#"><span class="fa fa-linkedin"></span></a>
-                            <a href="#"><span class="fa fa-pinterest"></span></a>
-                        </div>
-                    </div>
-                    <p>Vivamus auctor fermentum nisi, dapibus aliquet dolor pretium non. Nam vitae justo fermentum.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!--End Our Testimonial-->
 @endsection
