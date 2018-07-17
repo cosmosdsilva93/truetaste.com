@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `updated_at` datetime DEFAULT NULL,
   `status` enum('0','1') NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table truetaste_db.menu: ~4 rows (approximately)
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
@@ -56,7 +56,12 @@ INSERT INTO `menu` (`id`, `category`, `item`, `price`, `created_at`, `updated_at
 	(1, 1, 'scrambled Eggs in Puff', 16, '2018-07-15 19:28:00', NULL, '1'),
 	(2, 1, 'scrambled Eggs in Puff Pastry', 14, '2018-07-15 19:28:00', NULL, '1'),
 	(3, 2, 'scrambled Eggs in Puff', 10, '2018-07-15 19:31:16', NULL, '1'),
-	(4, 3, 'scrambled Eggs in Puff Pastry', 19, '2018-07-15 19:31:16', NULL, '1');
+	(4, 3, 'scrambled Eggs in Puff Pastry', 19, '2018-07-15 19:31:16', NULL, '1'),
+	(5, 1, 'Chicken Croissant', 2, '2018-07-17 04:49:57', NULL, '1'),
+	(6, 1, 'Chicken Croissant', 2, '2018-07-17 04:50:21', NULL, '0'),
+	(7, 1, 'Chicken Croissant', 2, '2018-07-17 04:51:01', NULL, '0'),
+	(8, 1, 'pasta', 10, '2018-07-17 05:24:58', '2018-07-17 06:09:32', '1'),
+	(9, 2, 'Nonsense', 1, '2018-07-17 06:18:07', NULL, '0');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
 -- Dumping structure for table truetaste_db.orders
@@ -71,9 +76,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `status` enum('1','0') DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=latin1;
 
--- Dumping data for table truetaste_db.orders: ~16 rows (approximately)
+-- Dumping data for table truetaste_db.orders: ~14 rows (approximately)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` (`id`, `name`, `email`, `items`, `total_amount`, `transaction_id`, `currency_code`, `status`, `created_at`) VALUES
 	(178, 'Cosmos', 'cosmosdsilva93@gmail.com', '1-3|3-1|4-1', 77, NULL, 'USD', '0', '2018-07-16 06:30:04'),
@@ -91,7 +96,8 @@ INSERT INTO `orders` (`id`, `name`, `email`, `items`, `total_amount`, `transacti
 	(191, 'Cosmos', 'cosmosdsilva93@gmail.com', '4-1', 19, NULL, 'USD', '0', '2018-07-16 07:43:17'),
 	(192, 'HashBrown', 'hashy@gmail.com', '1-2|2-1', 46, '0XV685617Y742325D', 'USD', '1', '2018-07-16 08:14:54'),
 	(193, 'Cosmos', 'cosmosdsilva93@gmail.com', '1-2|4-1', 51, '7HN54880V10335842', 'USD', '1', '2018-07-16 11:12:37'),
-	(194, 'Cosmos', 'cosmosdsilva93@gmail.com', '1-3|2-2', 76, '0XV685617Y742325D', 'USD', '1', '2018-07-16 11:22:50');
+	(194, 'Cosmos', 'cosmosdsilva93@gmail.com', '1-3|2-2', 76, '0XV685617Y742325D', 'USD', '1', '2018-07-16 11:22:50'),
+	(195, 'Cosmos', 'cosmosdsilva93@gmail.com', '4-1', 19, '8X109990L7225694A', 'USD', '1', '2018-07-17 07:13:55');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- Dumping structure for table truetaste_db.users
