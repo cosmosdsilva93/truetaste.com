@@ -169,39 +169,61 @@ $(function(){
 
     $('#checkoutBttn').on('click', function(e){
         e.preventDefault();
-        var data = $('#checkoutForm').serializeArray();
-        $.ajax({
-            url: subpath+'/save-order-details',
-            type: 'POST',
-            dataType: 'json',
-            data: data,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function()
-            {
+        if($('#checkoutForm').valid())
+        {
+            var data = $('#checkoutForm').serializeArray();
+            $.ajax({
+                url: subpath+'/save-order-details',
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function()
+                {
 
-            },
-            success: function(res)
-            {
-                console.log(res);
-                if (res.success) {
-                    $('#checkoutForm').submit();
-                } else {
-                    $('#checkout-alert span').text(res.msg);
-                    $('#checkout-alert').fadeIn();
+                },
+                success: function(res)
+                {
+                    // console.log(res);
+                    if (res.success) {
+                        $('#checkoutForm').submit();
+                    } else {
+                        $('#checkout-alert span').text(res.msg);
+                        $('#checkout-alert').fadeIn();
+                    }
                 }
-            }
-        });
-        
+            });
+        }     
     });
 
+    $("#checkoutForm").validate({
+        // Specify validation rules
+        rules: {
+          // The key name on the left side is the name attribute
+          // of an input field. Validation rules are defined
+          // on the right side
+          name: "required",
+          email: {
+            required: true,
+            // Specify that email should be validated
+            // by the built-in "email" rule
+            email: true
+          },
+        },
+        // Specify validation error messages
+        messages: {
+          name: "Please enter your name.",
+          email: "Please enter a valid email address."
+        }
+    });
 });
 
-function changeStatus(controller, status, id)
+function changeStatus(url)
 {
     swal({
-        title: "Are you sure you want to make this "+ controller + (status ? ' active' : ' inactive') +" ?",
+        title: "Are you sure you want to delete this item ?",
         icon: "warning",
         buttons: true,
         dangermode: true,
@@ -211,24 +233,7 @@ function changeStatus(controller, status, id)
     }, function(isConfirm) 
     {
         if (isConfirm) {
-            $.ajax({
-                url: subpath+'/'+controller+(controller == 'route' ? 'z' : 's')+'/change-status',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    id: id,
-                    status: status
-                },
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(res) 
-                {
-                    if (res) {
-                        window.location = res.url;
-                    }
-                }
-            });
+            window.location = url;
         }    
     });
    

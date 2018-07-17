@@ -11,6 +11,8 @@
 |
 */
 
+/*-------------- Home: Routes ----------------*/
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/contact-us', 'HomeController@contactUs');
 Route::post('/send-message', 'HomeController@getMessage');
@@ -23,17 +25,17 @@ Route::get('/about-us', 'HomeController@aboutUs');
 Route::get('/events', 'HomeController@events');
 Route::post('/save-order-details', 'HomeController@checkout');
 
-
-
-
-
-
+/*-------------- Admin: Routes ----------------*/
 
 Route::get('/admin', 'AdminController@showLogin')->name('login');
 Route::get('/admin/login', 'AdminController@login');
 Route::get('/admin/logout', 'AdminController@logout');
 Route::get('/admin/orders', 'AdminController@showOrders');
-Route::get('/admin/menu', 'AdminController@showMenu');
+Route::get('/admin/menu', 'AdminController@showMenu')->name('menu');
+Route::get('/admin/menu/add', 'AdminController@addMenu')->name('add_menu');
+Route::get('/admin/menu/save', 'AdminController@saveMenu');
+Route::get('/admin/menu/edit/{item}', 'AdminController@editMenu')->name('edit_menu');
+Route::get('/admin/menu/delete/{item}', 'AdminController@deleteMenu');
 Route::get('/admin/queries', 'AdminController@showQueries');
 
 

@@ -29,7 +29,7 @@ class Home extends Model
     public function getMenu()
     {
         $menu = DB::table('menu')->select('id', 'category', 'item', 'price')
-                ->where('status', '!=', 0)
+                ->where('status', '!=', '0')
                 ->get()->toArray();
         $menu = json_decode(json_encode($menu), true);
         return $menu;
