@@ -29,6 +29,7 @@
     <script src="{{ asset('js/scrolling-nav.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/magnific-popup.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/owl.carousel.js') }}" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js" type="text/javascript"></script>
     @if (Request::segment(1) == 'contact-us')
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTwYSMRGuTsmfl2z_zZDStYqMlKtrybxo"></script>
         <script src="{{ asset('js/map-custom.js') }}"></script>

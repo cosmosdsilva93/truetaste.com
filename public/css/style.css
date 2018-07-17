@@ -2038,3 +2038,6 @@ blockquote.q-right, .blockquote.q-right {
 /*End Alert Section*/
 
 /*End InnerPage*/
+label{
+    color: #eb2141 !important;
+}

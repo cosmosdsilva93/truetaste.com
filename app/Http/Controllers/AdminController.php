@@ -80,17 +80,60 @@ class AdminController extends Controller
 		return view('admin.menu', $data);
 	}
 
-	// public function changeStatus()
-	// {
-	// 	$postedData = $this->request->all();
-	// 	$response = $this->user->changeStatus($postedData);
-	// 	$data['url'] = url('/users');
-	// 	$class = "alert-danger";
-	// 	if (count($response) > 0 && $response['success'] == 1) {
-	// 		$class = "alert-success";
-	// 	}
-	// 	$this->request->Session()->put('class', $class);
-	// 	$this->request->Session()->put('msg', $response['msg']);
-	// 	echo json_encode($data);
-	// }
+	public function addMenu()
+	{
+		$data['itemData'] = array();
+		session_start();
+		if (isset($_SESSION['itemData'])) {
+			$data['itemData'] = $_SESSION['itemData'];
+		}
+		session_destroy();
+		$data['categories'] = unserialize(CATEGORIES);
+		$data['title'] = 'Add Item';
+		return view('admin.add-edit-menu', $data);
+	}
+
+	public function saveMenu()
+	{
+		if ($this->request->all()) {
+			if ($this->request->input('itemId') != '') {
+				$request['id'] = $this->request->input('itemId');
+			}
+			$request['item'] = trim(strip_tags($this->request->input('item')));
+			$request['category'] = $this->request->input('category');
+			$request['price'] = trim(strip_tags($this->request->input('price')));
+			$response = $this->admin->saveMenu($request);
+			$class = ($response['success']) ? 'alert-success' : 'alert-danger';
+			$this->request->Session()->put('class', $class);
+			$this->request->Session()->put('msg', $response['msg']);
+			if ($response['success']) { 
+				return \Redirect::route('edit_menu', [($this->request->input('itemId') != '') ? $this->request->input('itemId') : $response['insertId']]);
+			} else {
+				session_start();
+				$_SESSION['itemData'] = $request;
+				return \Redirect::route('add_menu');
+			}
+		}
+	}
+
+	public function editMenu($item)
+	{
+		$data['itemData'] = $this->admin->getItems([$item])[0];
+		$data['categories'] = unserialize(CATEGORIES);
+		$data['title'] = 'Edit Item';
+		return view('admin.add-edit-menu', $data);
+	}
+
+	public function deleteMenu($id)
+	{
+		$postedData = $this->request->all();
+		$response = $this->admin->deleteMenu($id);
+		$class = "alert-danger";
+		if (count($response) > 0 && $response['success'] == 1) {
+			$class = "alert-success";
+		}
+		$this->request->Session()->put('class', $class);
+		$this->request->Session()->put('msg', $response['msg']);
+		return \Redirect::route('menu');
+	}
 }

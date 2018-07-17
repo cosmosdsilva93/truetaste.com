@@ -57,8 +57,7 @@ class Admin extends Model
     {
         $response = array();
         try {
-            $getMenu = DB::table('menu')->select('id', 'category', 'item', 'price', 'status')
-                          ->get()->toArray();
+            $getMenu = DB::table('menu')->select('id', 'category', 'item', 'price', 'status')->where('status', '=', '1')->get()->toArray();
             $getMenu = json_decode(json_encode($getMenu), true);
             if (count($getMenu) > 0) {
                 $response['success'] = 1;
@@ -76,7 +75,7 @@ class Admin extends Model
     {
         $response = array();
         try {
-            $getOrders = DB::table('orders')->select('*')->where('status', '=', 1)
+            $getOrders = DB::table('orders')->select('*')->where('status', '=', '1')
                           ->orderBy('id', 'DESC')->get()->toArray();
             $getOrders = json_decode(json_encode($getOrders), true);
             if (count($getOrders) > 0) {
@@ -91,21 +90,62 @@ class Admin extends Model
         return $response;
     }
 
-    // public function changeStatus($request)
-    // {
-    //     DB::beginTransaction();
-    //     try {
-    //         User::where('id', $request['id'])->update(['status' => $request['status']]);
-    //         DB::commit();
-    //         $response['success'] = 1;
-    //         $response['msg'] = 'User has been made ' . ($request['status'] ? 'active' : 'inactive') . ' successfully.';
-    //     } catch (\Exception $e) {
-    //         DB::rollback();
-    //         $response['success'] = 0;
-    //         $response['msg'] = ERROR_MSG;
-    //     }
-    //     return $response;
-    // }
+    public function saveMenu($request)
+    {
+        if(isset($request['id']))
+        {
+            $request['updated_at'] = date('Y-m-d H:i:s');
+        } else {
+            $request['created_at'] = date('Y-m-d H:i:s');
+        }
+        DB::beginTransaction();
+        try {
+            if(isset($request['id']))
+            {
+                $item_id = $request['id']; 
+                unset($request['id']);
+                DB::table('menu')->where('id', '=', $item_id)->update($request);
+                DB::commit();                
+                $response['msg'] = 'Item has been updated successfully.';
+            } else {
+                $response['insertId'] = DB::table('menu')->insertGetId($request);
+                DB::commit();
+                $response['msg'] = 'Item has been added to the menu successfully.';
+            }
+            $response['success'] = 1;
+            
+        } catch (\Exception $e) {
+            DB::rollback();
+            $response['success'] = 0;
+            $response['msg'] = ERROR_MSG;
+        }
+        return $response;
+    }
+
+    public function getItems($itemIds)
+    {
+        $cart = DB::table('menu')->select('id', 'category', 'item', 'price')
+                ->whereIn('id', $itemIds)
+                ->get()->toArray();
+        $cart = json_decode(json_encode($cart), true);
+        return $cart;
+    }
+
+    public function deleteMenu($id)
+    {
+        DB::beginTransaction();
+        try {
+            DB::table('menu')->where('id', $id)->update(['status' => '0']);
+            DB::commit();
+            $response['success'] = 1;
+            $response['msg'] = 'Item has been successfully deleted.';
+        } catch (\Exception $e) {
+            DB::rollback();
+            $response['success'] = 0;
+            $response['msg'] = ERROR_MSG;
+        }
+        return $response;
+    }
 
 
 }

@@ -12,7 +12,7 @@
 		        <div class="content">
 		            <div class="row">
 		            	<div class="col-md-12" align="right">
-		            		<a href="">
+		            		<a href="{{ url('/admin/menu/add') }}">
 		            			<button type="button" class="btn btn-primary" title="Add Item">Add Item</button>
 		            		</a>
 		            	</div>
@@ -28,7 +28,6 @@
 			                				<th>Item</th>
 			                				<th>Category</th>
 			                				<th>Price</th>
-			                				<th>Status</th>
 			                				<th>Actions</th>
 			                			</tr>
 			                		</thead>
@@ -40,19 +39,8 @@
 			                				<td>{{ ucfirst($categories[$items['category']]) }}</td>
 			                				<td>$ {{ number_format($items['price'], 2) }}</td>
 			                				<td>
-			                					@if($items['status'])
-			                						<span class="text-success">Active</span>
-			                					@else
-			                						<span class="text-danger">Inactive</span>
-			                					@endif
-			                				</td>
-			                				<td>
-			                					<a href="" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a>
-			                					@if($items['status'])
-			                						<a href="javascript:void(0);" onclick="changeStatus('helipad', 0, {{ $items['id'] }})" title="Make Inactive"><i class="fa fa-thumbs-down text-danger" aria-hiden="true"></i></a>
-			                					@else
-			                						<a href="javascript:void(0);" onclick="changeStatus('helipad', 1, {{ $items['id'] }})" title="Make Active"><i class="fa fa-thumbs-up text-success" aria-hiden="true"></i></a>
-			                					@endif
+			                					<a href="{{ url('/admin/menu/edit') . '/' . $items['id'] }}" title="Edit"><i class="fa fa-pencil text-primary" aria-hidden="true"></i></a>
+			                					<a href="javascript:void(0);" onclick='changeStatus("{{  url('/admin/menu/delete') . '/' . $items['id'] }}")' title="Delete"><i class="fa fa-times text-danger" aria-hiden="true"></i></a>
 			                				</td>
 			                			</tr>
 			                			@endforeach
