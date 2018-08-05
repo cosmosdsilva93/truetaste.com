@@ -36,6 +36,10 @@ env_variables:
   GOOGLE_CLIENT_SECRET: 7dO85r0MjCptZtzWNRJ3POex
   GOOGLE_REDIRECT: http://localhost/truetaste.com/auth-callback/google
 
+  FACEBOOK_CLIENT_ID: 306952916519344
+  FACEBOOK_CLIENT_SECRET: d2a17c32e1338991f6f177328277e4b8
+  FACEBOOK_REDIRECT: http://localhost/truetaste.com/auth-callback/facebook
+
 beta_settings:
    # for Cloud SQL, set this value to the Cloud SQL connection name,
    # e.g. "project:region:cloudsql-instance"
