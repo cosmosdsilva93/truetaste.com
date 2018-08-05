@@ -190,6 +190,12 @@ class HomeController extends Controller
         if ($this->request->all()) {
             $userDetails = array();
             $userDetails = \Socialite::driver($service)->user();
+            echo __FILE__ . '<br/>';
+            echo __LINE__ . '<br/>';
+            echo '<pre>';
+            print_r($userDetails);
+            echo '</pre><br/>';
+            exit();
             if (count($userDetails) > 0) {
                 $name = explode(' ', $userDetails->name);
                 $request['first_name'] = $name[0];
