@@ -46,8 +46,8 @@
         <div class="the-menu-body" style="padding:10px 0 !important;">
             <span class="menu-title">Enter Your Details -</span>
         </div>
-        <input type="text" name="name" class="form-control" value="" required="required" placeholder="Name*">
-        <input type="email" name="email" style="margin-top: 10px;" class="form-control" value="" required="required" placeholder="Email*">
+        <input type="text" name="name" class="form-control" value="{{ isset($_SESSION['userDetails']) ? $_SESSION['userDetails']['first_name'] . ' ' . $_SESSION['userDetails']['last_name'] : '' }}" required="required" placeholder="Name*">
+        <input type="email" name="email" style="margin-top: 10px;" class="form-control" value="{{ isset($_SESSION['userDetails']) ? $_SESSION['userDetails']['email'] : '' }}" required="required" placeholder="Email*">
         <textarea name="address" id="" style="margin-top: 10px;background-color: #eee;border: 0 none;color: #262626;font-size: 14px;font-weight: 600;letter-spacing: 1px;" class="form-control" rows="3" required="required" placeholder="Address*"></textarea>
     </div>   
 @else

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-12 col-xs-12">
                     <div class="tv-footer-title">
-                        <a href="home.html">True Taste</a>
+                        <a href="home.html">Foodie Miracles</a>
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-12 col-xs-12">

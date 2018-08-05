@@ -7,7 +7,7 @@
 	<div class="sidebar-wrapper">
         <div class="logo">
             <a href="{{ url('/dashboard') }}" class="simple-text">
-                True Taste Admin
+                Foodie Miracles Admin
             </a>
         </div>
         <ul class="nav">

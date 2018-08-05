@@ -14,12 +14,14 @@ class HomeController extends Controller
 
     public function index() 
     {	
+        session_start();
     	$data['title'] = 'Home';
     	return view('home.index', $data);
     }
 
     public function contactUs()
     {
+        session_start();
     	$data['title'] = 'Contact Us';
     	return view('home.contact-us', $data);
     }
@@ -122,8 +124,8 @@ class HomeController extends Controller
         
                     \Mail::send('emails.order-details', $data, function($message) use ($recepients) {
                         $message->to($recepients['email'], $recepients['name'])
-                                ->subject('Your True Taste order details');
-                        $message->from('truetaste2018@gmail.com','True Taste Admin');
+                                ->subject('Your Foodie Miracles order details');
+                        $message->from('truetaste2018@gmail.com','Foodie Miracles Admin');
                     });
                     $data['title'] = "Payment Successfull";
                     return view('home.success', $data);
@@ -144,12 +146,14 @@ class HomeController extends Controller
 
     public function aboutUs()
     {
+        session_start();
         $data['title'] = 'About Us';
         return view('home.about-us', $data);
     }
 
     public function events()
     {
+        session_start();
         $data['title'] = 'Events';
         return view('home.events', $data);
     }   
@@ -174,5 +178,38 @@ class HomeController extends Controller
             }
             echo json_encode($response);
         }
+    }
+
+    public function authLogin($service)
+    {
+        return \Socialite::driver($service)->redirect();
+    }
+
+    public function authCallback($service)
+    {
+        if ($this->request->all()) {
+            $userDetails = array();
+            $userDetails = \Socialite::driver($service)->user();
+            if (count($userDetails) > 0) {
+                $name = explode(' ', $userDetails->name);
+                $request['first_name'] = $name[0];
+                $request['last_name'] = $name[1];
+                $request['email'] = $userDetails->email;
+                $response = $this->home->saveUser($request);
+                if ($response['success']) {
+                    session_start();
+                    $_SESSION['userDetails'] = $request;
+                    return redirect()->route('home');
+                }
+            }
+        }
+    }
+
+    public function logout()
+    {
+        session_start();
+        unset($_SESSION);
+        session_destroy();
+        return redirect()->route('home');
     } 
 }    

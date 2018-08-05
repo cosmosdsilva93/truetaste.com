@@ -13,3 +13,21 @@ resources/views/admin/show_orders.blade.php
 resources/views/emails/order-details.blade.php
 resources/views/home/cart-view.blade.php
 resources/views/home/success.blade.php
+
+app.yaml                                   
+app/Http/Controllers/Auth/LoginController.p
+app/Http/Controllers/HomeController.php    
+changes.txt                                
+composer.json                              
+composer.lock                              
+config/app.php                             
+config/services.php                        
+new file:   public/images/fb_bttn.png                  
+new file:   public/images/google_bttn.png              
+resources/views/admin/master.blade.php     
+resources/views/admin/sidebar.blade.php    
+resources/views/common/footer.blade.php    
+resources/views/common/header.blade.php    
+resources/views/common/master.blade.php    
+resources/views/home/contact-us.blade.php  
+

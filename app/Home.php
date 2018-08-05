@@ -97,4 +97,25 @@ class Home extends Model
         $order = json_decode(json_encode($order), true);
         return $order;
     }
+
+    public function saveUser($request)
+    {
+        $getUser = DB::table('users')->select('id', 'first_name', 'last_name', 'email')->where('email', '=', $request['email'])->get()->toArray();
+        if (!count($getUser)) {
+            DB::beginTransaction();
+            try {
+                $request['created_at'] = date('Y-m-d H:i:s');
+                DB::table('users')->insert($request);
+                DB::commit();
+                $response['success'] = 1;
+            } catch (\Exception $e) {
+                DB::rollback();
+                $response['success'] = 0;
+                // $response['msg'] = ERROR_MSG;
+            }
+        } else {
+            $response['success'] = 1;
+        }
+        return $response;
+    }
 }

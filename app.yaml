@@ -32,6 +32,10 @@ env_variables:
   MAIL_PASSWORD: Truetaste@123
   MAIL_ENCRYPTION: tls
 
+  GOOGLE_CLIENT_ID: 374531667660-4nrmgkn8eoj5vvuujfi5qeo31i0rbilu.apps.googleusercontent.com
+  GOOGLE_CLIENT_SECRET: 7dO85r0MjCptZtzWNRJ3POex
+  GOOGLE_REDIRECT: http://localhost/truetaste.com/auth-callback/google
+
 beta_settings:
    # for Cloud SQL, set this value to the Cloud SQL connection name,
    # e.g. "project:region:cloudsql-instance"

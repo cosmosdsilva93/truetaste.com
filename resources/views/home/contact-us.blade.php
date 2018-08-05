@@ -44,12 +44,12 @@
 
                                 <div class="col-md-4 col-sm-12">
                                     <div class="form-item form-name">
-                                        <input class="inputs" name="name" placeholder="Your Name" type="text" required>
+                                        <input class="inputs" name="name" placeholder="Your Name" type="text" required value="{{ isset($_SESSION['userDetails']) ? $_SESSION['userDetails']['first_name'] . ' ' . $_SESSION['userDetails']['last_name'] : '' }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="form-item form-email">
-                                        <input class="inputs" name="email" placeholder="Your Email" type="email" required>
+                                        <input class="inputs" name="email" placeholder="Your Email" type="email" required value="{{ isset($_SESSION['userDetails']) ? $_SESSION['userDetails']['email'] : '' }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">

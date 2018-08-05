@@ -24,6 +24,10 @@ Route::get('/get-cart', 'HomeController@getCart');
 Route::get('/about-us', 'HomeController@aboutUs');
 Route::get('/events', 'HomeController@events');
 Route::post('/save-order-details', 'HomeController@checkout');
+Route::get('/auth-login/{service}', 'HomeController@authLogin');
+Route::get('/auth-callback/{service}', 'HomeController@authCallback');
+Route::get('/logout', 'HomeController@logout');
+
 
 /*-------------- Admin: Routes ----------------*/
 
