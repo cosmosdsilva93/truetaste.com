@@ -28,6 +28,7 @@
 			                				<th rowspan="2">Transaction ID</th>
 			                				<th rowspan="2">Name</th>
 			                				<th rowspan="2">Email</th>
+			                				<th rowspan="2">Address</th>
 			                				<th rowspan="2">Date</th>
 			                				<th colspan="2" style="text-align:center;">Order</th>
 			                				<th rowspan="2">Price</th>
@@ -48,6 +49,7 @@
 				                				<td rowspan="{{ $rowspan }}">{{ $orderDetails['transaction_id'] }}</td>
 				                				<td rowspan="{{ $rowspan }}">{{ ucwords($orderDetails['name']) }}</td>
 				                				<td rowspan="{{ $rowspan }}"><a href="mailto:{{ $orderDetails['email'] }}">{{ $orderDetails['email'] }}</a></td>
+				                				<td rowspan="{{ $rowspan }}">{{ ($orderDetails['address']) ? ucwords($orderDetails['address']) : "-" }}</td>
 				                				<td rowspan="{{ $rowspan }}">{{ date('Y-m-d', strtotime($orderDetails['created_at'])) }}</td>
 				                				@php
 				                					$splitArr = explode('-', $itemCount[0]);

@@ -161,10 +161,34 @@ $(function(){
                         $('#checkoutBttn').prop('disabled', false);
                     }
                     $('#cartView').html(res.view);
+                    $("[type='number']").keydown(function (e) {
+                        e.preventDefault();
+                    });
                 }
             }
         }); 
         $('#view-cart-modal').modal('show');
+    });
+
+    $(document).on('input', "input[type='number']", function() {
+        var quantity = $(this).val();
+        var master = $(this).parents(':eq(2)');
+        var productNo = master.data('product');
+        var price = master.find("[name='amount_"+productNo+"']").val(); 
+        master.find("[name='quantity[]']").val(quantity);
+        master.find("[name='quantity_"+productNo+"']").val(quantity);
+        var newPrice = parseFloat(price * quantity).toFixed(2);
+        master.find("[name='newPrice_"+productNo+"']").val(newPrice);
+        master.find(".price").text("$"+newPrice);
+        var prices = [];
+        $("[name*='newPrice_']").each(function(){
+            prices.push($(this).val());
+        });
+        var total = 0;
+        for (var i = 0; i < prices.length; i++) {
+            total = parseFloat(total) + parseFloat(prices[i]);
+        }
+        master.parent().find("[name='total_amount']").val(total).next().text("$"+total.toFixed(2));
     });
 
     $('#checkoutBttn').on('click', function(e){
@@ -211,11 +235,13 @@ $(function(){
             // by the built-in "email" rule
             email: true
           },
+          address: "required"
         },
         // Specify validation error messages
         messages: {
           name: "Please enter your name.",
-          email: "Please enter a valid email address."
+          email: "Please enter a valid email address.",
+          address: "Please enter your address."
         }
     });
 });

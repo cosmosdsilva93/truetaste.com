@@ -100,6 +100,7 @@ class HomeController extends Controller
                     $getOrderDetails = $this->home->getOrderDetails($orderId)[0];
                     $data['name'] = $getOrderDetails['name'];
                     $data['email'] = $getOrderDetails['email'];
+                    $data['address'] = $getOrderDetails['address'];
                     $data['total_amount'] = $getOrderDetails['total_amount'];
                     $data['transaction_id'] = $getOrderDetails['transaction_id'];
 
@@ -159,6 +160,7 @@ class HomeController extends Controller
             session_start();
             $request['name'] = trim(strip_tags($this->request->input('name')));
             $request['email'] = trim(strip_tags($this->request->input('email')));
+            $request['address'] = trim(strip_tags($this->request->input('address')));
             foreach ($this->request->input('items') as $index => $vals) {
                 $orderList[] = $vals . '-' . $this->request->input('quantity')[$index];  
             }

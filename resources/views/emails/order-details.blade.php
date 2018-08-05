@@ -18,6 +18,10 @@
 					<td style="border: 1px solid black;" colspan="2">{{ $email }}</td>
 				</tr>
 				<tr>
+					<td style="border: 1px solid black;background-color:#eb2141;color:#ffffff;"><strong>Address</strong></td>
+					<td style="border: 1px solid black;" colspan="2">{{ $address }}</td>
+				</tr>
+				<tr>
 					<td style="border: 1px solid black;background-color:#eb2141;color:#ffffff;"><strong>Transaction ID</strong></td>
 					<td style="border: 1px solid black;" colspan="2">{{ $transaction_id }}</td>
 				</tr>
