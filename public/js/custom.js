@@ -108,6 +108,7 @@ $(function(){
                 // $('#contact-us-loader').show();
             },
             success: function(res){
+                $('#emptyCart').hide();
                 $('#cartCount').text(res);
             }
         });
@@ -157,6 +158,7 @@ $(function(){
             success: function(res){
                 // return false;
                 if (res) {
+                    $('#emptyCart').hide();
                     if (!res.noData) {
                         $('#checkoutBttn').prop('disabled', false);
                     }
@@ -222,28 +224,30 @@ $(function(){
         }     
     });
 
-    $("#checkoutForm").validate({
-        // Specify validation rules
-        rules: {
-          // The key name on the left side is the name attribute
-          // of an input field. Validation rules are defined
-          // on the right side
-          name: "required",
-          email: {
-            required: true,
-            // Specify that email should be validated
-            // by the built-in "email" rule
-            email: true
-          },
-          address: "required"
-        },
-        // Specify validation error messages
-        messages: {
-          name: "Please enter your name.",
-          email: "Please enter a valid email address.",
-          address: "Please enter your address."
-        }
-    });
+    // if ($("#checkoutForm").length) {
+        $("#checkoutForm").validate({
+            // Specify validation rules
+            rules: {
+              // The key name on the left side is the name attribute
+              // of an input field. Validation rules are defined
+              // on the right side
+              name: "required",
+              email: {
+                required: true,
+                // Specify that email should be validated
+                // by the built-in "email" rule
+                email: true
+              },
+              address: "required"
+            },
+            // Specify validation error messages
+            messages: {
+              name: "Please enter your name.",
+              email: "Please enter a valid email address.",
+              address: "Please enter your address."
+            }
+        });
+    // }
 });
 
 function changeStatus(url)
@@ -263,4 +267,52 @@ function changeStatus(url)
         }    
     });
    
+}
+
+function removeItemFromCart(elem, itemId)
+{
+    swal({
+        title: "Are you sure you want to remove this item ?",
+        icon: "warning",
+        buttons: true,
+        dangermode: true,
+        showCancelButton: true,
+        confirmButtonClass: "btn-success",
+        confirmButtonText: "Yes"
+    }, function(isConfirm) 
+    {
+        if (isConfirm) {
+            var master = elem.parents(":eq(1)");
+            var mParent = master.parent();
+            master.remove();
+            var prices = [];
+            $("[name*='newPrice_']").each(function(){
+                prices.push($(this).val());
+            });
+            var total = 0;
+            for (var i = 0; i < prices.length; i++) {
+                total = parseFloat(total) + parseFloat(prices[i]);
+            }
+            mParent.find("[name='total_amount']").val(total).next().text("$"+total.toFixed(2));
+
+            $.ajax({
+                url: subpath+'/remove-from-cart',
+                data: {
+                    'productId': itemId
+                },
+                dataType: 'json',
+                beforeSend: function(){
+                    // $('#contact-us-loader').show();
+                },
+                success: function(res){
+                    $('#cartCount').text(res);
+                    if (!res) {
+                        $('#cartView').html('');
+                        $('#checkoutBttn').prop('disabled', true);
+                        $('#emptyCart').show();
+                    }
+                }
+            });
+        }    
+    });
 }

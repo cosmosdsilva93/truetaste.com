@@ -63,6 +63,22 @@ class HomeController extends Controller
             $cartCount = array_sum($_SESSION['cart']);
         }
         echo $cartCount;
+    }
+
+    public function removeFromCart()
+    {
+        // $cartCount = 0;
+        if ($this->request->all()) {
+            session_start();
+            if (isset($_SESSION['cart'][$this->request->input('productId')])) {
+                unset($_SESSION['cart'][$this->request->input('productId')]);
+            }
+            $cartCount = array_sum($_SESSION['cart']);
+            if (!$cartCount) {
+                unset($_SESSION);
+            }
+        }
+        echo $cartCount;
     }        
 
     public function getCart()
@@ -182,14 +198,14 @@ class HomeController extends Controller
 
     public function authLogin($service)
     {
-        return \Socialite::driver($service)->stateless()->redirect();
+        return \Socialite::driver($service)->redirect();
     }
 
     public function authCallback($service)
     {
         if ($this->request->all()) {
             $userDetails = array();
-            $userDetails = \Socialite::driver($service)->stateless()->user();
+            $userDetails = \Socialite::driver($service)->user();
            //echo __FILE__ . '<br/>';
             //echo __LINE__ . '<br/>';
             //echo '<pre>';

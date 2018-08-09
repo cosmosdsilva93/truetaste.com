@@ -14,6 +14,7 @@
         <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
         @if (Request::segment(1) == 'payment-fail')
             <link href="{{ asset('css/payment-fail.css') }}" rel="stylesheet">
         @endif
@@ -30,6 +31,7 @@
     <script src="{{ asset('js/magnific-popup.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/owl.carousel.js') }}" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
     @if (Request::segment(1) == 'contact-us')
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTwYSMRGuTsmfl2z_zZDStYqMlKtrybxo"></script>
         <script src="{{ asset('js/map-custom.js') }}"></script>

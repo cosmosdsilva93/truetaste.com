@@ -18,6 +18,8 @@ Route::get('/contact-us', 'HomeController@contactUs');
 Route::post('/send-message', 'HomeController@getMessage');
 Route::get('/menu', 'HomeController@menu');
 Route::get('/add-to-cart', 'HomeController@addToCart');
+Route::get('/remove-from-cart', 'HomeController@removeFromCart');
+Route::get('/update-cart', 'HomeController@updateCart');
 Route::get('/payment-success', 'HomeController@paymentSuccess');
 Route::get('/payment-failed', 'HomeController@paymentFail')->name('payment_failed');
 Route::get('/get-cart', 'HomeController@getCart');

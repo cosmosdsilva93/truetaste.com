@@ -79,7 +79,10 @@
                     <input type="hidden" name="upload" value="1">
                     <div id="cartView">
                                
-                    </div>               
+                    </div>   
+                    <div id="emptyCart" class="alert alert-danger" align="center" style="display:none;">
+                       <span>Nothing added in cart.</span>
+                    </div>            
                     <input type="hidden" name="currency_code" value="USD">
                     
                     <!-- Specify URLs -->

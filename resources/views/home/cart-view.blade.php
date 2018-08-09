@@ -6,11 +6,12 @@
     <div class="the-menu-item" style="padding:0" data-product={{ $itemId }}>
         <div class="the-menu-body">
             <span class="menu-title" style="display:inline-block;width:60%;">{{ ucwords($itemDetails['item']) }}</span>
-            
             <span style="display:inline-block;width:10%;">X</span>
-    
             <span>
                 <input type="number" min="1" style="width: 15%;" value="{{ $itemDetails['quantity'] }}">
+            </span>
+            <span style="cursor: pointer;" onClick="removeItemFromCart($(this), {{ $itemId }});">
+                <i title="Remove Item" class="fa fa-times text-danger" style="font-size: 15px;padding: 0 15px;"></i>
             </span>
         </div>
         <div class="prices" style="top:12px !important">
