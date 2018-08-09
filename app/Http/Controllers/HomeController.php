@@ -182,21 +182,21 @@ class HomeController extends Controller
 
     public function authLogin($service)
     {
-        return \Socialite::driver($service)->redirect();
+        return \Socialite::driver($service)->stateless()->redirect();
     }
 
     public function authCallback($service)
     {
         if ($this->request->all()) {
             $userDetails = array();
-            $userDetails = \Socialite::driver($service)->user();
-            echo __FILE__ . '<br/>';
-            echo __LINE__ . '<br/>';
-            echo '<pre>';
-            print_r($userDetails);
-            echo '</pre><br/>';
-            exit();
-            if (count($userDetails) > 0) {
+            $userDetails = \Socialite::driver($service)->stateless()->user();
+           //echo __FILE__ . '<br/>';
+            //echo __LINE__ . '<br/>';
+            //echo '<pre>';
+            //print_r($userDetails);
+            //echo '</pre><br/>';
+            //exit();
+            //if (count($userDetails) > 0) {
                 $name = explode(' ', $userDetails->name);
                 $request['first_name'] = $name[0];
                 $request['last_name'] = $name[1];
@@ -207,7 +207,7 @@ class HomeController extends Controller
                     $_SESSION['userDetails'] = $request;
                     return redirect()->route('home');
                 }
-            }
+            //}
         }
     }
 

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12">
                     <div class="navbar-header text-center">
-                        <a href="{{ url('/') }}" class="navbar-brand">Foodie Miracles</a>
+                        <a style="padding:7px 15px !important;" href="{{ url('/') }}" class="navbar-brand">Foodie Miracles</a>
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tv-navbar">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>

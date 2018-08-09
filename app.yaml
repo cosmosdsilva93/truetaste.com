@@ -10,19 +10,21 @@ skip_files:
 
 env_variables:
   # Put production environment variables here.
-  APP_ENV: local   # or production
+  APP_ENV: live   # or production
   APP_LOG: errorlog
   APP_KEY: base64:DZiM1EfHU98zy5LV1zvBOKr7rJHePI51T+c/jl0qGjk=
   STORAGE_DIR: /tmp
   APP_DEBUG : true # or false
 
   #follow the part of the tutorial on setting up your SQL database
+  #CACHE_DRIVER: database
+  #SESSION_DRIVER: database
   DB_CONNECTION: mysql
-  DB_HOST: localhost
-  DB_DATABASE: truetaste-2-db-instance
+  DB_HOST: 127.0.0.1
+  DB_DATABASE: newtruetastedb
   DB_USERNAME: root
   DB_PASSWORD: password
-  DB_SOCKET: /cloudsql/true-taste-2:us-central1:truetaste-2-db-instance 
+  DB_SOCKET: /cloudsql/third-nature-204108:us-central1:newtruetastedb 
 
 
   MAIL_DRIVER: smtp
@@ -34,13 +36,14 @@ env_variables:
 
   GOOGLE_CLIENT_ID: 374531667660-4nrmgkn8eoj5vvuujfi5qeo31i0rbilu.apps.googleusercontent.com
   GOOGLE_CLIENT_SECRET: 7dO85r0MjCptZtzWNRJ3POex
-  GOOGLE_REDIRECT: http://localhost/truetaste.com/auth-callback/google
+  GOOGLE_REDIRECT: https://third-nature-204108.appspot.com/auth-callback/google
 
   FACEBOOK_CLIENT_ID: 306952916519344
   FACEBOOK_CLIENT_SECRET: d2a17c32e1338991f6f177328277e4b8
-  FACEBOOK_REDIRECT: http://localhost/truetaste.com/auth-callback/facebook
+  FACEBOOK_REDIRECT: https://third-nature-204108.appspot.com/auth-callback/facebook
 
+  SESSION_DOMAIN: third-nature-204108.appspot.com
 beta_settings:
    # for Cloud SQL, set this value to the Cloud SQL connection name,
    # e.g. "project:region:cloudsql-instance"
-   cloud_sql_instances: true-taste-2:us-central1:truetaste-2-db-instance
+   cloud_sql_instances: third-nature-204108:us-central1:newtruetastedb
