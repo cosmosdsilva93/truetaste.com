@@ -176,21 +176,37 @@ $(function(){
         var quantity = $(this).val();
         var master = $(this).parents(':eq(2)');
         var productNo = master.data('product');
-        var price = master.find("[name='amount_"+productNo+"']").val(); 
-        master.find("[name='quantity[]']").val(quantity);
-        master.find("[name='quantity_"+productNo+"']").val(quantity);
-        var newPrice = parseFloat(price * quantity).toFixed(2);
-        master.find("[name='newPrice_"+productNo+"']").val(newPrice);
-        master.find(".price").text("$"+newPrice);
-        var prices = [];
-        $("[name*='newPrice_']").each(function(){
-            prices.push($(this).val());
+        var price = master.find("[name='amount_"+productNo+"']").val();     
+        $.ajax({
+            url: subpath+'/update-cart',
+            data: {
+                'productId': productNo,
+                'quantity': quantity
+            },
+            dataType: 'json',
+            beforeSend: function(){
+                // $('#contact-us-loader').show();
+            },
+            success: function(res){
+                if (res) {
+                    master.find("[name='quantity[]']").val(quantity);
+                    master.find("[name='quantity_"+productNo+"']").val(quantity);
+                    var newPrice = parseFloat(price * quantity).toFixed(2);
+                    master.find("[name='newPrice_"+productNo+"']").val(newPrice);
+                    master.find(".price").text("$"+newPrice);
+                    var prices = [];
+                    $("[name*='newPrice_']").each(function(){
+                        prices.push($(this).val());
+                    });
+                    var total = 0;
+                    for (var i = 0; i < prices.length; i++) {
+                        total = parseFloat(total) + parseFloat(prices[i]);
+                    }
+                    master.parent().find("[name='total_amount']").val(total).next().text("$"+total.toFixed(2));
+                    $('#cartCount').text(res);
+                }
+            }
         });
-        var total = 0;
-        for (var i = 0; i < prices.length; i++) {
-            total = parseFloat(total) + parseFloat(prices[i]);
-        }
-        master.parent().find("[name='total_amount']").val(total).next().text("$"+total.toFixed(2));
     });
 
     $('#checkoutBttn').on('click', function(e){
